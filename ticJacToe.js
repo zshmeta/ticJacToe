@@ -17,9 +17,9 @@ function createBoard() {
             cellElement.id = index;
             cellElement.addEventListener('click', addGO);
             gameBoard.append(cellElement);
-            
+
         })
-    
+
 }
 createBoard()
 function addGO(e){
@@ -28,13 +28,14 @@ function addGO(e){
     e.target.append(goDisplay);
     go = go === "circle" ? "cross" : "circle";
     infoDisplay.textContent = go.toUpperCase() + "'s turn";
-    goDisplay.style.color = go === "circle" ? go.classList.add(colors[0]) : go;
+    goDisplay.style.color = go === "circle" ? goDisplay.classList.add(colors[0]) : go;
     e.target.removeEventListener('click', addGO);
     checkScore();
 }
 
 
 function checkScore(){
+    const allSquares = document.querySelectorAll('.square')
     const winningCombinations = [
         [0, 1, 2],
         [3, 4, 5],
@@ -45,11 +46,25 @@ function checkScore(){
         [0, 4, 8],
         [2, 4, 6]
     ]
-    winningCombinations.forEach((combination) => {
-        const [a, b, c] = combination;
-        if(startCells[a] && startCells[a] === startCells[b] && startCells[a] === startCells[c]){
-            infoDisplay.textContent = startCells[a] + " has won";
-            gameBoard.removeEventListener('click', addGO);
+    winningCombinations.forEach((array) => {
+       const circleWins = array.every(cell =>
+            allSquares[cell].firstChild?.classList.contains("circle"))
+       
+            if (circleWins) {
+                infoDisplay.textContent = "Circle has won";
+                allSquares.forEach(cell => square.replaceWith(square.cloneNode(true)));
+                return
+            }
+        })
+    
+        winningCombinations.forEach((array) => {
+        const crossWins = array.every(cell => 
+            allSquares[cell].firstChild?.classList.contains("cross"))
+        
+
+            if (crossWins) {
+                infoDisplay.textContent = "Cross has won";
+                allSquares.forEach(cell => square.replaceWith(square.cloneNode(true)));
         }
-    })
+        })
 }
