@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #030303;
+}
+
+#gameBoard {
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.square {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 15px solid rgb(0, 255, 0);
+    box-sizing: border-box;
+}
+
+.cross {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.cross:before, .cross:after {
+    content: "";
+    position: absolute;
+    background-color: rgb(255, 0, 0);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cross:before {
+    left: 50%;
+    width: 30%;
+    margin-left: -15%;
+    height: 100%;
+}
+
+.cross:after {
+    top: 50%;
+    height: 30%;
+    margin-top: -15%;
+    width: 100%;
+}
+
+#info {
+    margin: 35px;
+    font-size: 30px;
+    padding: 0;
+    color: rgb(0, 255, 0);
+}
+
+#info.myTurn {
+    color: rgb(255, 0, 0);
+}
+
+#circleScore {
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+#circleScore.myTurn {
+    color: rgb(0, 255, 0);
+}
+
+#crossScore {
+    color: rgb(0, 255, 0);
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+#crossScore.myTurn {
+    color: rgb(255, 0, 0);
+}
